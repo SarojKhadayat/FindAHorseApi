@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FindAHorseBoxDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblBookingMaster">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookedBy" Type="int" />
+    <Property Name="BookedHorseBox" Type="int" />
+    <Property Name="BookedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblHorseBoxes">
+    <Key>
+      <PropertyRef Name="HorseBoxId" />
+    </Key>
+    <Property Name="HorseBoxId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsAirConditioned" Type="bit" Nullable="false" />
+    <Property Name="HasCameras" Type="bit" Nullable="false" />
+    <Property Name="HasAccomodation" Type="bit" Nullable="false" />
+    <Property Name="Tonnage" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="RampId" Type="int" />
+    <Property Name="AvailableDates" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblHorseBoxImages">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="HorseBoxId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblHorseImages">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="HorseId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblHorses">
+    <Key>
+      <PropertyRef Name="HorseId" />
+    </Key>
+    <Property Name="HorseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Breed" Type="nvarchar" MaxLength="100" />
+    <Property Name="Size" Type="nvarchar" MaxLength="100" />
+    <Property Name="Color" Type="nvarchar" MaxLength="100" />
+    <Property Name="Other" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblRamps">
+    <Key>
+      <PropertyRef Name="RampId" />
+    </Key>
+    <Property Name="RampId" Type="int" Nullable="false" />
+    <Property Name="RampName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblUserMapper">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ProfilePicture" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblUserTypes">
+    <Key>
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserTypeId" Type="int" Nullable="false" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="fk_booking_HorseBox">
+    <End Role="tblHorseBoxes" Type="Self.tblHorseBoxes" Multiplicity="0..1" />
+    <End Role="tblBookingMaster" Type="Self.tblBookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHorseBoxes">
+        <PropertyRef Name="HorseBoxId" />
+      </Principal>
+      <Dependent Role="tblBookingMaster">
+        <PropertyRef Name="BookedHorseBox" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_booking_user">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblBookingMaster" Type="Self.tblBookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblBookingMaster">
+        <PropertyRef Name="BookedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorseBoxes_TblRamps">
+    <End Role="tblRamps" Type="Self.tblRamps" Multiplicity="0..1" />
+    <End Role="tblHorseBoxes" Type="Self.tblHorseBoxes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRamps">
+        <PropertyRef Name="RampId" />
+      </Principal>
+      <Dependent Role="tblHorseBoxes">
+        <PropertyRef Name="RampId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorseBoxes_TblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblHorseBoxes" Type="Self.tblHorseBoxes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblHorseBoxes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorseBoxImages_tblHorseBoxes">
+    <End Role="tblHorseBoxes" Type="Self.tblHorseBoxes" Multiplicity="0..1" />
+    <End Role="tblHorseBoxImages" Type="Self.tblHorseBoxImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHorseBoxes">
+        <PropertyRef Name="HorseBoxId" />
+      </Principal>
+      <Dependent Role="tblHorseBoxImages">
+        <PropertyRef Name="HorseBoxId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorseImages_tblHorses">
+    <End Role="tblHorses" Type="Self.tblHorses" Multiplicity="0..1" />
+    <End Role="tblHorseImages" Type="Self.tblHorseImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHorses">
+        <PropertyRef Name="HorseId" />
+      </Principal>
+      <Dependent Role="tblHorseImages">
+        <PropertyRef Name="HorseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorses_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblHorses" Type="Self.tblHorses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblHorses">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblUserMapper_tblUser">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblUserMapper" Type="Self.tblUserMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblUserMapper">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblUserMapper_tblUserType">
+    <End Role="tblUserTypes" Type="Self.tblUserTypes" Multiplicity="1" />
+    <End Role="tblUserMapper" Type="Self.tblUserMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUserTypes">
+        <PropertyRef Name="UserTypeId" />
+      </Principal>
+      <Dependent Role="tblUserMapper">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FindAHorseBoxDbModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBookingMaster" EntityType="Self.tblBookingMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblHorseBoxes" EntityType="Self.tblHorseBoxes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblHorseBoxImages" EntityType="Self.tblHorseBoxImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblHorseImages" EntityType="Self.tblHorseImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblHorses" EntityType="Self.tblHorses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRamps" EntityType="Self.tblRamps" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserMapper" EntityType="Self.tblUserMapper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserTypes" EntityType="Self.tblUserTypes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_booking_HorseBox" Association="Self.fk_booking_HorseBox">
+      <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
+      <End Role="tblBookingMaster" EntitySet="tblBookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="fk_booking_user" Association="Self.fk_booking_user">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblBookingMaster" EntitySet="tblBookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorseBoxes_TblRamps" Association="Self.fk_tblHorseBoxes_TblRamps">
+      <End Role="tblRamps" EntitySet="tblRamps" />
+      <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorseBoxes_TblUsers" Association="Self.fk_tblHorseBoxes_TblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorseBoxImages_tblHorseBoxes" Association="Self.fk_tblHorseBoxImages_tblHorseBoxes">
+      <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
+      <End Role="tblHorseBoxImages" EntitySet="tblHorseBoxImages" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorseImages_tblHorses" Association="Self.fk_tblHorseImages_tblHorses">
+      <End Role="tblHorses" EntitySet="tblHorses" />
+      <End Role="tblHorseImages" EntitySet="tblHorseImages" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorses_tblUsers" Association="Self.fk_tblHorses_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblHorses" EntitySet="tblHorses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblUserMapper_tblUser" Association="Self.fk_tblUserMapper_tblUser">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblUserMapper" EntitySet="tblUserMapper" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblUserMapper_tblUserType" Association="Self.fk_tblUserMapper_tblUserType">
+      <End Role="tblUserTypes" EntitySet="tblUserTypes" />
+      <End Role="tblUserMapper" EntitySet="tblUserMapper" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

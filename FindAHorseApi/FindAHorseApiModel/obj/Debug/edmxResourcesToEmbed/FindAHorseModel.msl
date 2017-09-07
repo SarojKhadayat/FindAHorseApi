@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FindAHorseBoxDbModelStoreContainer" CdmEntityContainer="FindAHorseBoxDbEntities">
+    <EntitySetMapping Name="tblBookingMasters">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblBookingMaster">
+        <MappingFragment StoreEntitySet="tblBookingMaster">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="BookedBy" ColumnName="BookedBy" />
+          <ScalarProperty Name="BookedHorseBox" ColumnName="BookedHorseBox" />
+          <ScalarProperty Name="BookedOn" ColumnName="BookedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHorseBoxes">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblHorseBox">
+        <MappingFragment StoreEntitySet="tblHorseBoxes">
+          <ScalarProperty Name="HorseBoxId" ColumnName="HorseBoxId" />
+          <ScalarProperty Name="IsAirConditioned" ColumnName="IsAirConditioned" />
+          <ScalarProperty Name="HasCameras" ColumnName="HasCameras" />
+          <ScalarProperty Name="HasAccomodation" ColumnName="HasAccomodation" />
+          <ScalarProperty Name="Tonnage" ColumnName="Tonnage" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="RampId" ColumnName="RampId" />
+          <ScalarProperty Name="AvailableDates" ColumnName="AvailableDates" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHorseBoxImages">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblHorseBoxImage">
+        <MappingFragment StoreEntitySet="tblHorseBoxImages">
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="HorseBoxId" ColumnName="HorseBoxId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHorses">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblHors">
+        <MappingFragment StoreEntitySet="tblHorses">
+          <ScalarProperty Name="HorseId" ColumnName="HorseId" />
+          <ScalarProperty Name="Breed" ColumnName="Breed" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Other" ColumnName="Other" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRamps">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblRamp">
+        <MappingFragment StoreEntitySet="tblRamps">
+          <ScalarProperty Name="RampId" ColumnName="RampId" />
+          <ScalarProperty Name="RampName" ColumnName="RampName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserTypes">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblUserType">
+        <MappingFragment StoreEntitySet="tblUserTypes">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tblUserMapper" TypeName="FindAHorseBoxDbModel.tblUserMapper" StoreEntitySet="tblUserMapper">
+      <EndProperty Name="tblUserType">
+        <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+      </EndProperty>
+      <EndProperty Name="tblUser">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="tblHorseImages">
+      <EntityTypeMapping TypeName="FindAHorseBoxDbModel.tblHorseImage">
+        <MappingFragment StoreEntitySet="tblHorseImages">
+          <ScalarProperty Name="HorseId" ColumnName="HorseId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

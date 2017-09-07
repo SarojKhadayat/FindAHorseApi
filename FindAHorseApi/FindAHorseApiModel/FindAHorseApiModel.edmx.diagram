@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6f851be1aa74e668b6fa9405ff82f19" Name="Diagram1">
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblBookingMaster" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblHorseBox" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblHorseBoxImage" Width="1.5" PointX="8.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblHorseImage" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblHors" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblRamp" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblUser" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_booking_HorseBox" ManuallyRouted="false" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_booking_user" ManuallyRouted="false" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblHorseBoxes_TblRamps" ManuallyRouted="false" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblHorseBoxes_TblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblHorseBoxImages_tblHorseBoxes" ManuallyRouted="false" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblHorseImages_tblHorses" ManuallyRouted="false" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblHorses_tblUsers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblUserMapper" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="FindAHorseBoxDbModel.tblUserType" Width="1.5" PointX="0.75" PointY="10.625" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser" />
+        <AssociationConnector Association="FindAHorseBoxDbModel.fk_tblUserMapper_tblUserType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
