@@ -20,22 +20,37 @@ namespace FindAHorseApi.Controllers
         [Route("signup")]
         public IHttpActionResult SignUp(UserApiModel user)
         {
-            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            try
             {
-                // Get the uploaded image from the Files collection
-                var httpPostedFile = HttpContext.Current.Request.Files["UploadedImage"];
-
-                if (httpPostedFile != null)
+                var httpRequest = HttpContext.Current.Request;
+                //if (httpRequest.Files.Count < 1)
+                //{
+                //    return (IHttpActionResult)Request.CreateResponse(HttpStatusCode.BadRequest);
+                //}
+               // var postedFile = httpRequest.Files[0];
+              //  var filePath = HttpContext.Current.Server.MapPath("~/UploadedFiles" + postedFile.FileName);
+              //  postedFile.SaveAs(filePath);
+               // user.ProfilePicture = filePath;
+                int userType = (int)Enum.Parse(typeof(Common.UserTypeEnum), user.UserType, true);
+                bool userExists = _userBussiness.CheckIfUserExist(user.Email, userType);
+                if (userExists)
                 {
-                    // Validate the uploaded image(optional)
-                    // Get the complete file path
-                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/UploadedFiles"), httpPostedFile.FileName);
-                    // Save the uploaded file to "UploadedFiles" folder
-                    httpPostedFile.SaveAs(fileSavePath);
-                    user.ProfilePicture = httpPostedFile.FileName;
-                }             
+                    return Ok("User Already exists");
+                }
+                else
+                {
+                    int id = _userBussiness.CreateUser(user);
+                    if (id > 0)
+                    {
+                        return Ok("User Created Successfully");
+                    }
+                    else { return Ok("User not created"); }
+                }
             }
-            return Ok(_userBussiness.CreateUser(user));
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
         }
     }
 }

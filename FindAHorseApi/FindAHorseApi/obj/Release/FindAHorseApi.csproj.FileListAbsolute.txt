@@ -81,3 +81,5 @@ C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApi
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApi\bin\EntityFramework.xml
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApi\bin\FindAHorseRepository.pdb
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApi\bin\FindAHorseRepository.dll.config
+C:\Users\saroj\documents\visual studio 2017\Projects\FindAHorseApi\FindAHorseApi\bin\EntityFramework.SqlServer.dll
+C:\Users\saroj\documents\visual studio 2017\Projects\FindAHorseApi\FindAHorseApi\bin\EntityFramework.SqlServer.xml

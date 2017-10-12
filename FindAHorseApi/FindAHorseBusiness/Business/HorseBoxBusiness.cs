@@ -4,19 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FindAHorseApiModel;
+using FindAHorseApiModel.ApiModel;
 using FindAHorseRepository.Repository;
 
 namespace FindAHorseBusiness.Business
 {
-    public class HorseBoxBusiness : IHorseBoxBusiness
+    public class HorseBoxBusiness 
     {
         private HorseBoxRepository _horseBoxRepository=new HorseBoxRepository();
-        //public HorseBoxBusiness(HorseBoxRepository horseBoxRepository) {
-        //    _horseBoxRepository = horseBoxRepository;
-        //}
-        public int AddHorseBox(tblHorseBox horseBox)
+        public int AddHorseBox(TransporterApiModel transporter)
         {
-            return _horseBoxRepository.AddHorseBox(horseBox);
+            tblHorseBox horseBox = new tblHorseBox() {
+                Age=transporter.Age,
+                HasAccomodation=transporter.HasAccomodation,
+                HasCameras=transporter.HasCameras,
+                IsAirConditioned=transporter.IsAirConditioned,
+                RampId=transporter.RampId,
+                Tonnage=transporter.Tonnage,
+                UserId=transporter.UserId
+            };
+            return _horseBoxRepository.AddHorseBox(horseBox,transporter.ImagePaths);
         }
 
         public List<tblHorseBox> GetAllHorseBoxes()
@@ -32,6 +39,13 @@ namespace FindAHorseBusiness.Business
         public tblHorseBox GetHorseBoxesById(int id)
         {
             return _horseBoxRepository.GetHorseBoxesById(id);
+        }
+        public List<tblHorseBox> GetHorseBoxByAddress(string searchText)
+        {
+            return _horseBoxRepository.GetHorseBoxByAddress(searchText);
+        }
+        public tblHorseBox GetTransporterDetails(int id) {
+            return _horseBoxRepository.GetTransporterDetails(id);
         }
     }
 }

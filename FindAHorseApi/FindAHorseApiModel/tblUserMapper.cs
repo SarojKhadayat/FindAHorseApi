@@ -18,7 +18,7 @@ namespace FindAHorseApiModel
         public int UserTypeId { get; set; }
         public int UserMapperId { get; set; }
     
-        public virtual tblUser tblUser { get; set; }
         public virtual tblUserType tblUserType { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

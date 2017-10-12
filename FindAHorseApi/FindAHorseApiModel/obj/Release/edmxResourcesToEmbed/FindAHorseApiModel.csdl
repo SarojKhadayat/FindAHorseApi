@@ -9,7 +9,7 @@
     <Property Name="BookedHorseBox" Type="Int32" />
     <Property Name="BookedOn" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tblHorseBox" Relationship="Self.fk_booking_HorseBox" FromRole="tblBookingMaster" ToRole="tblHorseBoxes" />
-    <NavigationProperty Name="tblUser" Relationship="Self.fk_booking_user" FromRole="tblBookingMaster" ToRole="tblUsers" />
+    <NavigationProperty Name="tblUser" Relationship="FindAHorseBoxDbModel.fk_booking_user" FromRole="tblBookingMaster" ToRole="tblUser" />
   </EntityType>
   <EntityType Name="tblHorseBox">
     <Key>
@@ -26,8 +26,8 @@
     <Property Name="UserId" Type="Int32" />
     <NavigationProperty Name="tblBookingMasters" Relationship="Self.fk_booking_HorseBox" FromRole="tblHorseBoxes" ToRole="tblBookingMaster" />
     <NavigationProperty Name="tblRamp" Relationship="Self.fk_tblHorseBoxes_TblRamps" FromRole="tblHorseBoxes" ToRole="tblRamps" />
-    <NavigationProperty Name="tblUser" Relationship="Self.fk_tblHorseBoxes_TblUsers" FromRole="tblHorseBoxes" ToRole="tblUsers" />
     <NavigationProperty Name="tblHorseBoxImages" Relationship="Self.fk_tblHorseBoxImages_tblHorseBoxes" FromRole="tblHorseBoxes" ToRole="tblHorseBoxImages" />
+    <NavigationProperty Name="tblUser" Relationship="FindAHorseBoxDbModel.fk_tblHorseBoxes_TblUsers" FromRole="tblHorseBox" ToRole="tblUser" />
   </EntityType>
   <EntityType Name="tblHorseBoxImage">
     <Key>
@@ -58,7 +58,7 @@
     <Property Name="Other" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UserId" Type="Int32" />
     <NavigationProperty Name="tblHorseImages" Relationship="Self.fk_tblHorseImages_tblHorses" FromRole="tblHorses" ToRole="tblHorseImages" />
-    <NavigationProperty Name="tblUser" Relationship="Self.fk_tblHorses_tblUsers" FromRole="tblHorses" ToRole="tblUsers" />
+    <NavigationProperty Name="tblUser" Relationship="FindAHorseBoxDbModel.fk_tblHorses_tblUsers" FromRole="tblHors" ToRole="tblUser" />
   </EntityType>
   <EntityType Name="tblRamp">
     <Key>
@@ -67,22 +67,6 @@
     <Property Name="RampId" Type="Int32" Nullable="false" />
     <Property Name="RampName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tblHorseBoxes" Relationship="Self.fk_tblHorseBoxes_TblRamps" FromRole="tblRamps" ToRole="tblHorseBoxes" />
-  </EntityType>
-  <EntityType Name="tblUser">
-    <Key>
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tblBookingMasters" Relationship="Self.fk_booking_user" FromRole="tblUsers" ToRole="tblBookingMaster" />
-    <NavigationProperty Name="tblHorseBoxes" Relationship="Self.fk_tblHorseBoxes_TblUsers" FromRole="tblUsers" ToRole="tblHorseBoxes" />
-    <NavigationProperty Name="tblHorses" Relationship="Self.fk_tblHorses_tblUsers" FromRole="tblUsers" ToRole="tblHorses" />
-    <NavigationProperty Name="tblUserMappers" Relationship="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser" FromRole="tblUser" ToRole="tblUserMapper" />
   </EntityType>
   <Association Name="fk_booking_HorseBox">
     <End Role="tblHorseBoxes" Type="Self.tblHorseBox" Multiplicity="0..1" />
@@ -96,18 +80,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_booking_user">
-    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
-    <End Role="tblBookingMaster" Type="Self.tblBookingMaster" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUsers">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="tblBookingMaster">
-        <PropertyRef Name="BookedBy" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_tblHorseBoxes_TblRamps">
     <End Role="tblRamps" Type="Self.tblRamp" Multiplicity="0..1" />
     <End Role="tblHorseBoxes" Type="Self.tblHorseBox" Multiplicity="*" />
@@ -117,18 +89,6 @@
       </Principal>
       <Dependent Role="tblHorseBoxes">
         <PropertyRef Name="RampId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_tblHorseBoxes_TblUsers">
-    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
-    <End Role="tblHorseBoxes" Type="Self.tblHorseBox" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUsers">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="tblHorseBoxes">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -156,18 +116,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_tblHorses_tblUsers">
-    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
-    <End Role="tblHorses" Type="Self.tblHors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUsers">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="tblHorses">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="FindAHorseBoxDbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tblBookingMasters" EntityType="Self.tblBookingMaster" />
     <EntitySet Name="tblHorseBoxes" EntityType="Self.tblHorseBox" />
@@ -175,21 +123,12 @@
     <EntitySet Name="tblHorseImages" EntityType="Self.tblHorseImage" />
     <EntitySet Name="tblHorses" EntityType="Self.tblHors" />
     <EntitySet Name="tblRamps" EntityType="Self.tblRamp" />
-    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
     <AssociationSet Name="fk_booking_HorseBox" Association="Self.fk_booking_HorseBox">
       <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
       <End Role="tblBookingMaster" EntitySet="tblBookingMasters" />
     </AssociationSet>
-    <AssociationSet Name="fk_booking_user" Association="Self.fk_booking_user">
-      <End Role="tblUsers" EntitySet="tblUsers" />
-      <End Role="tblBookingMaster" EntitySet="tblBookingMasters" />
-    </AssociationSet>
     <AssociationSet Name="fk_tblHorseBoxes_TblRamps" Association="Self.fk_tblHorseBoxes_TblRamps">
       <End Role="tblRamps" EntitySet="tblRamps" />
-      <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
-    </AssociationSet>
-    <AssociationSet Name="fk_tblHorseBoxes_TblUsers" Association="Self.fk_tblHorseBoxes_TblUsers">
-      <End Role="tblUsers" EntitySet="tblUsers" />
       <End Role="tblHorseBoxes" EntitySet="tblHorseBoxes" />
     </AssociationSet>
     <AssociationSet Name="fk_tblHorseBoxImages_tblHorseBoxes" Association="Self.fk_tblHorseBoxImages_tblHorseBoxes">
@@ -200,18 +139,28 @@
       <End Role="tblHorses" EntitySet="tblHorses" />
       <End Role="tblHorseImages" EntitySet="tblHorseImages" />
     </AssociationSet>
-    <AssociationSet Name="fk_tblHorses_tblUsers" Association="Self.fk_tblHorses_tblUsers">
-      <End Role="tblUsers" EntitySet="tblUsers" />
-      <End Role="tblHorses" EntitySet="tblHorses" />
-    </AssociationSet>
     <EntitySet Name="tblUserMappers" EntityType="FindAHorseBoxDbModel.tblUserMapper" />
     <EntitySet Name="tblUserTypes" EntityType="FindAHorseBoxDbModel.tblUserType" />
-    <AssociationSet Name="fk_tblUserMapper_tblUser" Association="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser">
-      <End Role="tblUser" EntitySet="tblUsers" />
-      <End Role="tblUserMapper" EntitySet="tblUserMappers" />
-    </AssociationSet>
     <AssociationSet Name="fk_tblUserMapper_tblUserType" Association="FindAHorseBoxDbModel.fk_tblUserMapper_tblUserType">
       <End Role="tblUserType" EntitySet="tblUserTypes" />
+      <End Role="tblUserMapper" EntitySet="tblUserMappers" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="FindAHorseBoxDbModel.sysdiagram" />
+    <EntitySet Name="tblUsers" EntityType="FindAHorseBoxDbModel.tblUser" />
+    <AssociationSet Name="fk_booking_user" Association="FindAHorseBoxDbModel.fk_booking_user">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblBookingMaster" EntitySet="tblBookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorseBoxes_TblUsers" Association="FindAHorseBoxDbModel.fk_tblHorseBoxes_TblUsers">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblHorseBox" EntitySet="tblHorseBoxes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblHorses_tblUsers" Association="FindAHorseBoxDbModel.fk_tblHorses_tblUsers">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblHors" EntitySet="tblHorses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tblUserMapper_tblUser" Association="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
       <End Role="tblUserMapper" EntitySet="tblUserMappers" />
     </AssociationSet>
   </EntityContainer>
@@ -222,8 +171,8 @@
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="UserTypeId" Type="Int32" Nullable="false" />
     <Property Name="UserMapperId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="tblUser" Relationship="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser" FromRole="tblUserMapper" ToRole="tblUser" />
     <NavigationProperty Name="tblUserType" Relationship="FindAHorseBoxDbModel.fk_tblUserMapper_tblUserType" FromRole="tblUserMapper" ToRole="tblUserType" />
+    <NavigationProperty Name="tblUser" Relationship="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser" FromRole="tblUserMapper" ToRole="tblUser" />
   </EntityType>
   <EntityType Name="tblUserType">
     <Key>
@@ -233,18 +182,6 @@
     <Property Name="UserType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tblUserMappers" Relationship="FindAHorseBoxDbModel.fk_tblUserMapper_tblUserType" FromRole="tblUserType" ToRole="tblUserMapper" />
   </EntityType>
-  <Association Name="fk_tblUserMapper_tblUser">
-    <End Type="FindAHorseBoxDbModel.tblUser" Role="tblUser" Multiplicity="1" />
-    <End Type="FindAHorseBoxDbModel.tblUserMapper" Role="tblUserMapper" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblUser">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="tblUserMapper">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_tblUserMapper_tblUserType">
     <End Type="FindAHorseBoxDbModel.tblUserType" Role="tblUserType" Multiplicity="1" />
     <End Type="FindAHorseBoxDbModel.tblUserMapper" Role="tblUserMapper" Multiplicity="*" />
@@ -254,6 +191,83 @@
       </Principal>
       <Dependent Role="tblUserMapper">
         <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TownOrCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblBookingMasters" Relationship="FindAHorseBoxDbModel.fk_booking_user" FromRole="tblUser" ToRole="tblBookingMaster" />
+    <NavigationProperty Name="tblHorseBoxes" Relationship="FindAHorseBoxDbModel.fk_tblHorseBoxes_TblUsers" FromRole="tblUser" ToRole="tblHorseBox" />
+    <NavigationProperty Name="tblHorses" Relationship="FindAHorseBoxDbModel.fk_tblHorses_tblUsers" FromRole="tblUser" ToRole="tblHors" />
+    <NavigationProperty Name="tblUserMappers" Relationship="FindAHorseBoxDbModel.fk_tblUserMapper_tblUser" FromRole="tblUser" ToRole="tblUserMapper" />
+  </EntityType>
+  <Association Name="fk_booking_user">
+    <End Type="FindAHorseBoxDbModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="FindAHorseBoxDbModel.tblBookingMaster" Role="tblBookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblBookingMaster">
+        <PropertyRef Name="BookedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorseBoxes_TblUsers">
+    <End Type="FindAHorseBoxDbModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="FindAHorseBoxDbModel.tblHorseBox" Role="tblHorseBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblHorseBox">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblHorses_tblUsers">
+    <End Type="FindAHorseBoxDbModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="FindAHorseBoxDbModel.tblHors" Role="tblHors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblHors">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tblUserMapper_tblUser">
+    <End Type="FindAHorseBoxDbModel.tblUser" Role="tblUser" Multiplicity="1" />
+    <End Type="FindAHorseBoxDbModel.tblUserMapper" Role="tblUserMapper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblUserMapper">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

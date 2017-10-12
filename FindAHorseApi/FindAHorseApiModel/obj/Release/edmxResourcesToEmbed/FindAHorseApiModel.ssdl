@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="FindAHorseBoxDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="FindAHorseBoxDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="tblBookingMaster">
     <Key>
       <PropertyRef Name="BookingId" />
@@ -72,10 +82,13 @@
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FullName" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="ProfilePicture" Type="nvarchar" MaxLength="500" />
+    <Property Name="TownOrCity" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserType" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tblUserTypes">
     <Key>
@@ -193,6 +206,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="FindAHorseBoxDbModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblBookingMaster" EntityType="Self.tblBookingMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblHorseBoxes" EntityType="Self.tblHorseBoxes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblHorseBoxImages" EntityType="Self.tblHorseBoxImages" Schema="dbo" store:Type="Tables" />

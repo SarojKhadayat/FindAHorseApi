@@ -5,6 +5,6 @@ C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApi
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\bin\Debug\EntityFramework.xml
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\obj\Debug\FindAHorseApiModel.csprojResolveAssemblyReference.cache
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\obj\Debug\FindAHorseApiModel.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\obj\Debug\FindAHorseApiModel.pdb
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseApiModel\obj\Debug\FindAHorseApiModel.csprojResolveAssemblyReference.cache

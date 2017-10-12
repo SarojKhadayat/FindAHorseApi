@@ -31,8 +31,9 @@ namespace FindAHorseApiModel
         public virtual DbSet<tblHorseImage> tblHorseImages { get; set; }
         public virtual DbSet<tblHors> tblHorses { get; set; }
         public virtual DbSet<tblRamp> tblRamps { get; set; }
-        public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblUserMapper> tblUserMappers { get; set; }
         public virtual DbSet<tblUserType> tblUserTypes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
     }
 }

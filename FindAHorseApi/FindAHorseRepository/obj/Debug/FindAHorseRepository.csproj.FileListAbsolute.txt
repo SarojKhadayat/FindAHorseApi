@@ -3,11 +3,11 @@ C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRep
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseRepository.pdb
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\EntityFramework.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseApiModel.dll
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseApiModel.pdb
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseApiModel.dll.config
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\EntityFramework.xml
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\obj\Debug\FindAHorseRepository.csprojResolveAssemblyReference.cache
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\obj\Debug\FindAHorseRepository.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\obj\Debug\FindAHorseRepository.pdb
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseApiModel.dll
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseApiModel.pdb
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseRepository\bin\Debug\FindAHorseApiModel.dll.config

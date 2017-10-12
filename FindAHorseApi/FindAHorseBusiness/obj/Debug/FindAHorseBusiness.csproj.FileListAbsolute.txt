@@ -1,8 +1,5 @@
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\FindAHorseBusiness.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\FindAHorseBusiness.pdb
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\obj\Debug\FindAHorseBusiness.csprojResolveAssemblyReference.cache
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\obj\Debug\FindAHorseBusiness.dll
-C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\obj\Debug\FindAHorseBusiness.pdb
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\FindAHorseApiModel.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\FindAHorseRepository.dll
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\EntityFramework.dll
@@ -11,3 +8,6 @@ C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBus
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\FindAHorseRepository.pdb
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\FindAHorseRepository.dll.config
 C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\bin\Debug\EntityFramework.xml
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\obj\Debug\FindAHorseBusiness.csprojResolveAssemblyReference.cache
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\obj\Debug\FindAHorseBusiness.dll
+C:\Users\saroj\Documents\Visual Studio 2017\Projects\FindAHorseApi\FindAHorseBusiness\obj\Debug\FindAHorseBusiness.pdb

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FindAHorseApiModel;
 namespace FindAHorseRepository.Repository
 {
-    public class HorseRepository:IHorseRepository
+    public class HorseRepository
     {
         private FindAHorseBoxDbEntities _db = new FindAHorseBoxDbEntities();
         public List<tblHors> GetAllHorses()
@@ -21,10 +21,20 @@ namespace FindAHorseRepository.Repository
         {
             return (from horse in _db.tblHorses where horse.UserId == OwnerId select horse).ToList();
         }
-        public int AddHorse(tblHors horse)
+        public int AddHorse(tblHors horse, List<string> ImagePaths)
         {
             _db.tblHorses.Add(horse);
-            return (_db.SaveChanges());
+            _db.SaveChanges();
+            //foreach (string path in ImagePaths)
+            //{
+            //    tblHorseImage imagePath = new tblHorseImage
+            //    {
+            //        HorseId = horse.HorseId,
+            //        ImagePath = path
+            //    };
+            //    _db.tblHorseImages.Add(imagePath);
+            //}
+            return (horse.HorseId);
         }
     }
 }

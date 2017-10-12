@@ -1,2 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters />
+<parameters>
+  <parameter name="FindAHorseBoxDbEntities-Web.config Connection String" description="FindAHorseBoxDbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/FindAHorseApiModel.csdl|res://*/FindAHorseApiModel.ssdl|res://*/FindAHorseApiModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=creativedatabaseversion1.database.windows.net;initial catalog=FindAHorseBoxDb;persist security info=True;user id=amir;password=cre@tivemind2017;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\saroj\\Documents\\Visual\ Studio\ 2017\\Projects\\FindAHorseApi\\FindAHorseApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FindAHorseBoxDbEntities']/@connectionString" />
+  </parameter>
+</parameters>

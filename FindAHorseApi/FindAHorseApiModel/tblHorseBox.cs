@@ -34,8 +34,8 @@ namespace FindAHorseApiModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBookingMaster> tblBookingMasters { get; set; }
         public virtual tblRamp tblRamp { get; set; }
-        public virtual tblUser tblUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblHorseBoxImage> tblHorseBoxImages { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }

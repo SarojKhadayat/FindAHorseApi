@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FindAHorseRepository.Repository
 {
-    public class UserRepository:IUserRepository
+    public class UserRepository
     {
         private FindAHorseBoxDbEntities _db = new FindAHorseBoxDbEntities();
         public List<tblUser> GetAllUsers()
@@ -18,19 +18,21 @@ namespace FindAHorseRepository.Repository
         {
             return (tblUser)(from user in _db.tblUsers where user.UserId == id select user);
         }
-        public bool UserLogin(string email, string password)
+        public tblUser UserLogin(string email, string password, int userType)
         {
-            var dbUser = (from user in _db.tblUsers where user.Email == email && user.Password == password select user).FirstOrDefault();
-            return dbUser != null ? true : false;
+            tblUser dbUser = (from user in _db.tblUsers where user.Email == email && user.Password == password && user.UserType == userType select user).FirstOrDefault();
+            return dbUser;
         }
-        public int CreateUser(tblUser user,int userTypeId)
+        public int CreateUser(tblUser user)
         {
             _db.tblUsers.Add(user);
-            int userId=_db.SaveChanges();
-            tblUserMapper userType = new tblUserMapper { UserId = userId, UserTypeId = userTypeId };
-            _db.tblUserMappers.Add(userType);
             _db.SaveChanges();
-            return userId;
+            return user.UserId;
+        }
+        public bool CheckIfUserExist(string email, int userType)
+        {
+            var user = _db.tblUsers.Where(x => x.Email == email && x.UserType == userType).FirstOrDefault();
+            return user != null ? true : false;
         }
     }
 }
